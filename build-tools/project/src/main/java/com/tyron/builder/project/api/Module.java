@@ -15,6 +15,10 @@ public interface Module extends UserDataHolderEx, CacheHolder {
     FileManager getFileManager();
 
     File getRootFile();
+    
+    File getGradleFile();
+    
+    File getRootProject();
 
     default String getName() {
         return getRootFile().getName();

@@ -55,7 +55,13 @@ public class Project {
 		mName = name;
         mModules = new LinkedHashMap<>();
         mMainModule = new AndroidModuleImpl(new File(mRoot, mName));
-        mSettings = new ProjectSettings(new File(root, "settings.json"));
+      
+        File codeassist = new File(root, ".idea");
+        if (!codeassist.exists()) {
+            if (!codeassist.mkdirs()) {
+            }
+		}
+        mSettings = new ProjectSettings(new File(codeassist, "settings.json"));
     }
 
     public boolean isCompiling() {
@@ -143,24 +149,5 @@ public class Project {
     }
 
     private void addEdges(MutableGraph<Module> graph, Module module) throws IOException {
-        Set<String> modules = module.getSettings().getStringSet("modules",
-                Collections.emptySet());
-        if (modules == null) {
-            return;
-        }
-
-        for (String s : modules) {
-            File moduleRoot = new File(mRoot, s);
-            if (!moduleRoot.exists()) {
-                continue;
-            }
-            Module subModule = ModuleUtil.fromDirectory(moduleRoot);
-            if (subModule != null) {
-                subModule.open();
-                graph.putEdge(module, subModule);
-
-                addEdges(graph, subModule);
-            }
-        }
     }
 }
