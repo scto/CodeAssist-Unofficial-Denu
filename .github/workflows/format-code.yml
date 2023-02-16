@@ -30,4 +30,7 @@ jobs:
       - uses: axel-op/googlejavaformat-action@v3.6.0
         with:
           args: "--aosp --replace"
+          token: ${{ github.token }}
           commitMessage: "refactor: Format Code"
+          # Recommended if you use MacOS:
+          # github-token: ${{ secrets.GITHUB_TOKEN
