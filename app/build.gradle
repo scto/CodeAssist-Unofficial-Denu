@@ -146,7 +146,7 @@ dependencies {
     implementation 'com.caverock:androidsvg-aar:1.4'
 
     implementation 'androidx.preference:preference:1.2.0'
-    implementation 'com.github.TutorialsAndroid:crashx:v6.0.19'
+    implementation 'com.github.TutorialsAndroid:crashx:6.0.19'
     implementation project(path: ':eclipse-formatter')
 	
 	//git
