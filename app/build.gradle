@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jlleitschuh.gradle.ktlint'
-apply plugin: 'net.idlestate.gradle-duplicate-classes-check'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -78,11 +77,6 @@ buildFeatures {
 
 configurations.implementation {
     exclude group: "org.jetbrains", module: "annotations"
-}
-
-checkForDuplicateClasses {
-    ignoreFailures = true
-    dependsOn 'jar'
 }
 
 dependencies {
