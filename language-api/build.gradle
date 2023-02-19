@@ -7,6 +7,15 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+// Duplicate class conflict between
+// jetified com.intellij:annotations:13.0.0
+// and
+// jetified org.jetbrains:annotations:23 0.0
+configurations {
+    cleanedAnnotations
+        compile.exclude group: 'org.jetbrains' , module:'annotations'
+}
+
 dependencies {
     implementation 'org.jetbrains:annotations:23.0.0'
 
