@@ -15,6 +15,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     compileOptions {
         coreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -55,7 +56,7 @@ android {
         }
     }
 	
-buildFeatures {
+    buildFeatures {
         viewBinding true
     }
 	
@@ -63,15 +64,19 @@ buildFeatures {
         jniLibs {
             useLegacyPackaging = true
         }
-        resources.excludes += "license/*"
 
+        resources.excludes += "license/*"
         exclude "plugin.properties"
         exclude "plugin.xml"
         exclude "about.html"
         exclude ".api_description"
-		exclude 'api_database/*'
+	exclude 'api_database/*'
         exclude "about_files/*"
         exclude "META-INF/eclipse.inf"
+    }
+
+    applicationVariants.all { variant ->
+        variant.getRuntimeConfiguration().exclude group: 'org.apache.commons', module: 'commons-lang3'
     }
 }
 
@@ -84,8 +89,9 @@ dependencies {
     // should be moved into its own module.
 
     // TODO: language processing should be on its own module
-	implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'org.antlr:antlr4-runtime:4.11.1'
+
     // TODO: completion providers should not be included on the main module
     implementation project(path: ':code-editor')
     implementation project(path: ':xml-completion')
@@ -149,9 +155,9 @@ dependencies {
     implementation 'com.github.TutorialsAndroid:crashx:6.0.19'
     implementation project(path: ':eclipse-formatter')
 	
-	//git
-	    implementation 'org.slf4j:slf4j-api:2.0.6'
-	    implementation 'com.blankj:utilcodex:1.31.1'
+    //git
+    implementation 'org.slf4j:slf4j-api:2.0.6'
+    implementation 'com.blankj:utilcodex:1.31.1'
 	
     //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 
