@@ -82,6 +82,7 @@ configurations.implementation {
 
 checkForDuplicateClasses {
     ignoreFailures = true
+    dependsOn 'jar'
 }
 
 dependencies {
